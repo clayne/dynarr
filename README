@@ -1,0 +1,63 @@
+dynarr - simple C dynamic array
+-------------------------------
+Author: John Tsiombikas <nuclear@member.fsf.org>
+
+1. Overview
+
+dynarr is a simple and easy to use dynamic array implementation for C, similar
+to the C++ std::vector class.
+
+2. Usage
+
+To use the dynamic array, just declare a pointer of whichever type you want your
+data to be, and call dynarr_alloc to create it. For instance, if you want an
+initially empty array of integers:
+
+  int *arr = dynarr_alloc(0, sizeof *arr);
+
+To add another integer, use the dynarr_push function like so:
+
+  int new_int = 10;
+  arr = dynarr_push(arr, &new_int);
+
+Dynarr makes sure to only resize your array at most logN times when you push N
+integers into it. Also arr always points to the begining of the actual data, so
+you can use it as a regular array. To get a count of how many items you have
+inserted in the array, call dynarr_size. So for instance, to print all integers
+just do the following:
+
+  for(i=0; i<dynarr_size(arr); i++) {
+      printf("%d\n", arr[i]);
+  }
+
+Feel free to examine the included example program (example.c), which you may
+build by typing make. The example program expects a series of numbers as command
+line arguments, which are appended to a dynamic array, sorted and then printed.
+
+There's no rule for building a dynarr library out of this; the code is so simple
+that it doesn't make sense to do that. Just include the two files
+(dynarr.h/dynarr.c) along with the rest of your source files and build them as
+part of your project.
+
+3. License
+
+I, John Tsiombikas, the author of dynarr, place it in the public domain.
+
+Feel free to use it, modify it, distribute it, look at it, print it, bite it,
+lick it, pee on it (hopefully in this order), or do whatever else you want with
+it, without any restriction whatsoever. Credit would be nice if you use it for
+something cool, but definitely not required.
+
+4. FAQ
+
+ 4.1. What's the point of dynarr? Why shouldn't I just use realloc directly.
+
+    There are two advantages to using dynarr instead of just reallocing your own
+    arrays:
+    - dynarr tracks the size for you without having to clutter up your code with
+      an extra count variable (see dynarr_size).
+    - dynarr doubles the size when there's insufficient space to push more data,
+      which makes your reallocs logN instead of N, for N pushes. Of course you
+      do the same, but you'd require yet another variable to keep not only the
+      number of items, but the currently allocated space as well. So again,
+      less clutter.

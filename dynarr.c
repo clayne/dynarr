@@ -1,3 +1,7 @@
+/* dynarr - dynamic resizable C array data structure
+ * author: John Tsiombikas <nuclear@member.fsf.org>
+ * license: public domain
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

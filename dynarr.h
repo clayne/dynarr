@@ -1,3 +1,7 @@
+/* dynarr - dynamic resizable C array data structure
+ * author: John Tsiombikas <nuclear@member.fsf.org>
+ * license: public domain
+ */
 #ifndef DYNARR_H_
 #define DYNARR_H_
 
