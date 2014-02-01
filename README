@@ -52,12 +52,12 @@ something cool, but definitely not required.
 
  4.1. What's the point of dynarr? Why shouldn't I just use realloc directly.
 
-    There are two advantages to using dynarr instead of just reallocing your own
-    arrays:
-    - dynarr tracks the size for you without having to clutter up your code with
-      an extra count variable (see dynarr_size).
-    - dynarr doubles the size when there's insufficient space to push more data,
-      which makes your reallocs logN instead of N, for N pushes. Of course you
-      do the same, but you'd require yet another variable to keep not only the
-      number of items, but the currently allocated space as well. So again,
-      less clutter.
+    There are two advantages to using dynarr instead of just reallocing your
+    own arrays:
+    - dynarr tracks the size for you without having to clutter up your code
+      with an extra count variable (see dynarr_size).
+    - dynarr doubles the size when there's insufficient space to push more
+      data, which makes your reallocs logN instead of N, for N pushes. Of
+      course you could do the same, but you'd require yet another variable
+      to keep not only the number of items, but the currently allocated space
+      as well. So again, less clutter.
